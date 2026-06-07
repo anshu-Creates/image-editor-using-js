@@ -1,47 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Editor</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <section id="left">
-        <div id="navbar">
-            <button class="choose">Choose Image</button>
-            <button class="reset">Reset</button>
-            <button class="download">Download Image</button>
-        </div>
-        <div id="main">
-            <img src="/image/a6.jpg" alt="image">
-        </div>
-
+      <div id="navbar">
+        <button class="choose">Choose Image</button>
+        <button class="reset">Reset</button>
+        <button class="download">Download Image</button>
+      </div>
+      <div id="main">
+        <img src="/image/a6.jpg" alt="image" />
+      </div>
     </section>
 
     <section id="right">
-        <div class="filters">
-            Brightness
-            <input type="range" id="brightness" min="0" max="200" value="100">
-            Saturation
-            <input type="range" id="saturation" min="0" max="200" value="100">
-                Inversion
-            <input type="range" id="inversion" min="0" max="100" value="0">
-            Grayscale
-            <input type="range" id="grayscale" min="0" max="100" value="0">
-            Grayscale
-            <input type="range" id="grayscale" min="0" max="100" value="0">
-            Grayscale
-            <input type="range" id="grayscale" min="0" max="100" value="0">
-
+      <div class="filters">
+        Brightness
+        <input type="range" id="brightness" min="0" max="200" value="100" />
+        Contrast
+        <input type="range" id="contrast" min="0" max="200" value="100" />
+        Exposure
+        <input type="range" id="exposure" min="0" max="200" value="100" />
+        Saturation
+        <input type="range" id="saturation" min="0" max="200" value="100" />
+        Hue Rotate
+        <input type="range" id="hue-rotate" min="0" max="360" value="0" />
+        Blur
+        <input type="range" id="blur" min="0" max="20" value="0" />
+        Grayscale
+        <input type="range" id="grayscale" min="0" max="100" value="0" />
+        Sepia
+        <input type="range" id="sepia" min="0" max="100" value="0" />
+        Opacity
+        <input type="range" id="opacity" min="0" max="100" value="100" />
+        Invert
+        <input type="range" id="invert" min="0" max="100" value="0" />
+      </div>
+      <div class="preset">
+        Preset Filters
+        <div>
+          <button class="original">Original</button>
+          <button class="preset2">Preset 2</button>
+          <button class="preset3">Preset 3</button>
+          <button class="preset4">Preset 4</button>
+          <button class="preset5">Preset 5</button>
+          <button class="preset6">Preset 6</button>
         </div>
-        <div class="preset">hghjb</div>
+      </div>
     </section>
-    
-
-
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
