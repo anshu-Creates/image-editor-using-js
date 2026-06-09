@@ -7,35 +7,167 @@ const contrast = document.querySelector("#contrast");
 const exposure = document.querySelector("#exposure");
 const saturation = document.querySelector("#saturation");
 const hue = document.querySelector("#hue-rotate");
-const blur = document.querySelector("#blur");
+const blurr = document.querySelector("#blur");
 const grayscale = document.querySelector("#grayscale");
 const sepia = document.querySelector("#sepia");
 const opacity = document.querySelector("#opacity");
 const invert = document.querySelector("#invert");
 
 let image = null;
+let imageSrc = null;
+let brightnessValue = 100;
+let contrastValue = 100;
+let saturationValue = 100;
+let hueValue = 0;
+let blurrValue = 0;
+let grayscaleValue = 0;
+let sepiaValue = 0;
+let opacityValue = 100;
+let invertValue = 0;
 
 choose.addEventListener("change", (elem) => {
-  imageSrc = elem.target.files[0];
-  image = document.createElement("img");
-  image.src = URL.createObjectURL(imageSrc);
-  image.style.display = "block";
-  image.setAttribute("alt", "image");
-  image.classList.add("image");
-  document.querySelector("#main").appendChild(image);
-  document.querySelector(".choose").style.display = "none";
+  if (!elem.target.files[0].type.startsWith("image/")) {
+    alert("Please select an image file.");
+    return;
+  } else {
+    imageSrc = elem.target.files[0];
+    image = document.createElement("img");
+    image.src = URL.createObjectURL(imageSrc);
+    image.style.display = "block";
+    image.setAttribute("alt", "image");
+    image.classList.add("image");
+    document.querySelector("#main").appendChild(image);
+    document.querySelector(".choose").style.display = "none";
+  }
 });
 
+function applyFilters() {
+  image.style.filter = `
+    brightness(${brightnessValue}%)
+    contrast(${contrastValue}%)
+    saturate(${saturationValue}%)
+    hue-rotate(${hueValue}deg)
+    blur(${blurrValue}px)
+    grayscale(${grayscaleValue}%)
+    sepia(${sepiaValue}%)
+    opacity(${opacityValue}%)
+    invert(${invertValue}%)
+  `;
+}
+
+function resetFilters() {
+  brightnessValue = 100;
+  contrastValue = 100;
+  saturationValue = 100;
+  hueValue = 0;
+  blurrValue = 0;
+  grayscaleValue = 0;
+  sepiaValue = 0;
+  opacityValue = 100;
+  invertValue = 0;
+  brightness.value = brightnessValue;
+  contrast.value = contrastValue;
+  exposure.value = brightnessValue;
+  saturation.value = saturationValue;
+  hue.value = hueValue;
+  blurr.value = blurrValue * 5;
+  grayscale.value = grayscaleValue;
+  sepia.value = sepiaValue;
+  opacity.value = opacityValue;
+  invert.value = invertValue;
+}
+
 brightness.addEventListener("input", (elem) => {
-  image.style.filter = `brightness(${elem.target.value}%)`;
+  brightnessValue = elem.target.value;
+  applyFilters();
 });
 
 contrast.addEventListener("input", (elem) => {
-  image.style.filter = `contrast(${elem.target.value}%)`;
+  contrastValue = elem.target.value;
+  applyFilters();
 });
 
 exposure.addEventListener("input", (elem) => {
-  exposureValue = elem.target.value;
-  image.style.filter = `brightness(${exposureValue * 0.013}%)`;
-  image.style.filter = `contrast(${1 + ((exposureValue * 0.013) - 1) * 0.2}%)`;
+  brightnessValue = elem.target.value;
+  applyFilters();
 });
+
+saturation.addEventListener("input", (elem) => {
+  saturationValue = elem.target.value;
+  applyFilters();
+});
+
+hue.addEventListener("input", (elem) => {
+  hueValue = elem.target.value;
+  applyFilters();
+});
+
+blurr.addEventListener("input", (elem) => {
+  blurrValue = elem.target.value / 5;
+  applyFilters();
+});
+
+grayscale.addEventListener("input", (elem) => {
+  grayscaleValue = elem.target.value;
+  applyFilters();
+});
+
+sepia.addEventListener("input", (elem) => {
+  sepiaValue = elem.target.value;
+  applyFilters();
+});
+
+opacity.addEventListener("input", (elem) => {
+  opacityValue = elem.target.value;
+  applyFilters();
+});
+
+invert.addEventListener("input", (elem) => {
+  invertValue = elem.target.value;
+  applyFilters();
+});
+
+reset.addEventListener("click", () => {
+  resetFilters();
+  applyFilters();
+});
+
+function downloadImage() {
+  const img = document.querySelector(".image");
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+
+  // Apply filters
+  ctx.filter = `
+    brightness(${brightnessValue}%)
+    contrast(${contrastValue}%)
+    saturate(${saturationValue}%)
+    hue-rotate(${hueValue}deg)
+    blur(${blurrValue}px)
+    grayscale(${grayscaleValue}%)
+    sepia(${sepiaValue}%)
+    opacity(${opacityValue}%)
+    invert(${invertValue}%)
+    `;
+
+  ctx.drawImage(img, 0, 0);
+
+  const link = document.createElement("a");
+  link.download = "edited-image.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+download.addEventListener("click", () => {
+  if (!image) {
+    alert("Please select an image to download.");
+    return;
+  } else {
+    downloadImage();
+  }
+});
+
+

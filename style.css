@@ -65,6 +65,8 @@ section{
     justify-content: center;
     align-items: center;
     padding: 40px;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 .image{
