@@ -1,6 +1,12 @@
 const choose = document.querySelector(".choose");
 const reset = document.querySelector(".reset");
 const download = document.querySelector(".download");
+const original = document.querySelector(".original");
+const vintage = document.querySelector(".vintage");
+const cold = document.querySelector(".cold");
+const warm = document.querySelector(".warm");
+const dramatic = document.querySelector(".dramatic");
+const darken = document.querySelector(".darken");
 
 const brightness = document.querySelector("#brightness");
 const contrast = document.querySelector("#contrast");
@@ -170,4 +176,49 @@ download.addEventListener("click", () => {
   }
 });
 
+original.addEventListener("click", () => {
+  resetFilters();
+  applyFilters();
+});
 
+vintage.addEventListener("click", () => {
+  brightnessValue = 110;
+  contrastValue = 120;
+  saturationValue = 90;
+  hueValue = -10;
+  sepiaValue = 30;
+  applyFilters();
+  
+});
+
+cold.addEventListener("click", () => {
+  brightnessValue = 90;
+  contrastValue = 110;
+  saturationValue = 120;
+  hueValue = 20;
+  applyFilters();
+});
+
+warm.addEventListener("click", () => {
+  brightnessValue = 110;
+  contrastValue = 120;
+  saturationValue = 120;
+  hueValue = -20;
+  applyFilters();
+});
+
+dramatic.addEventListener("click", () => {
+  brightnessValue = 80;
+  contrastValue = 150;
+  saturationValue = 80;
+  hueValue = 0;
+  applyFilters();
+});
+
+darken.addEventListener("click", () => {
+  brightnessValue = 70;
+  contrastValue = 130;
+  saturationValue = 100;
+  hueValue = 0;
+  applyFilters();
+});
