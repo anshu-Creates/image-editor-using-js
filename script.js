@@ -71,6 +71,9 @@ function resetFilters() {
   sepiaValue = 0;
   opacityValue = 100;
   invertValue = 0;
+}
+
+function resetValues() {
   brightness.value = brightnessValue;
   contrast.value = contrastValue;
   exposure.value = brightnessValue;
@@ -84,58 +87,124 @@ function resetFilters() {
 }
 
 brightness.addEventListener("input", (elem) => {
-  brightnessValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust brightness.");
+    resetValues();
+    return;
+  } else {
+    brightnessValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 contrast.addEventListener("input", (elem) => {
-  contrastValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust contrast.");
+    resetValues();
+    return;
+  } else {
+    contrastValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 exposure.addEventListener("input", (elem) => {
-  brightnessValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust exposure.");
+    resetValues();
+    return;
+  } else {
+    brightnessValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 saturation.addEventListener("input", (elem) => {
-  saturationValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust saturation.");
+    resetValues();
+    return;
+  } else {
+    saturationValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 hue.addEventListener("input", (elem) => {
-  hueValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust hue.");
+    resetValues();
+    return;
+  } else {
+    hueValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 blurr.addEventListener("input", (elem) => {
-  blurrValue = elem.target.value / 5;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust blur.");
+    resetValues();
+    return;
+  } else {
+    blurrValue = elem.target.value / 5;
+    applyFilters();
+  }
 });
 
 grayscale.addEventListener("input", (elem) => {
-  grayscaleValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust grayscale.");
+    resetValues();
+    return;
+  } else {
+    grayscaleValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 sepia.addEventListener("input", (elem) => {
-  sepiaValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust sepia.");
+    resetValues();
+    return;
+  } else {
+    sepiaValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 opacity.addEventListener("input", (elem) => {
-  opacityValue = elem.target.value;
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to adjust opacity.");
+    resetValues();
+    return;
+  } else {
+    opacityValue = elem.target.value;
+    applyFilters();
+  }
 });
 
 invert.addEventListener("input", (elem) => {
+  if (!image) {
+    alert("Please select an image to adjust invert.");
+    resetValues();
+    return;
+  } else {
   invertValue = elem.target.value;
   applyFilters();
+  }
 });
 
 reset.addEventListener("click", () => {
-  resetFilters();
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to reset.");
+    return;
+  } else {
+    resetFilters();
+    resetValues();
+    applyFilters();
+  }
 });
 
 function downloadImage() {
@@ -178,6 +247,7 @@ download.addEventListener("click", () => {
 
 original.addEventListener("click", () => {
   resetFilters();
+  resetValues();
   applyFilters();
 });
 
@@ -188,7 +258,7 @@ vintage.addEventListener("click", () => {
   hueValue = -10;
   sepiaValue = 30;
   applyFilters();
-  
+  resetValues();
 });
 
 cold.addEventListener("click", () => {
@@ -197,6 +267,7 @@ cold.addEventListener("click", () => {
   saturationValue = 120;
   hueValue = 20;
   applyFilters();
+  resetValues();
 });
 
 warm.addEventListener("click", () => {
@@ -205,6 +276,7 @@ warm.addEventListener("click", () => {
   saturationValue = 120;
   hueValue = -20;
   applyFilters();
+  resetValues();
 });
 
 dramatic.addEventListener("click", () => {
@@ -213,6 +285,7 @@ dramatic.addEventListener("click", () => {
   saturationValue = 80;
   hueValue = 0;
   applyFilters();
+  resetValues();
 });
 
 darken.addEventListener("click", () => {
@@ -221,4 +294,5 @@ darken.addEventListener("click", () => {
   saturationValue = 100;
   hueValue = 0;
   applyFilters();
+  resetValues();
 });
