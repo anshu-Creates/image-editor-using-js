@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Editor</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <section id="left">
       <div id="navbar">
-        <button class="reset">Reset</button>
-        <button class="download">Download Image</button>
+        <button class="reset custom-btn danger"><i class="ri-refresh-line"> </i>Reset</button>
+        <button class="download custom-btn success"><i class="ri-download-line"> </i>Download Image</button>
       </div>
       <div id="main">
-        <label for="fileInput" class="custom-btn"> Choose File </label>
+        <label for="fileInput" class="custom-btn primary"><i class="ri-upload-cloud-line"> </i>Upload Image</label>
         <input type="file" id="fileInput" class="choose" hidden />
         <!-- <img src="/image/a6.jpg" alt="image" /> -->
       </div>

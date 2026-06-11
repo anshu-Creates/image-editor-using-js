@@ -44,7 +44,8 @@ choose.addEventListener("change", (elem) => {
     image.classList.add("image");
     document.querySelector("#main").appendChild(image);
     document.querySelector(".choose").style.display = "none";
-    document.querySelector(".custom-btn").style.display = "none";
+    const uploadLabel = document.querySelector('.custom-btn.primary') || document.querySelector('label[for="fileInput"]');
+    if (uploadLabel) uploadLabel.style.display = 'none';
   }
 });
 
@@ -243,6 +244,7 @@ download.addEventListener("click", () => {
     return;
   } else {
     downloadImage();
+    window.location.reload();
   }
 });
 
