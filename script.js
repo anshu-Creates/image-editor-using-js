@@ -44,6 +44,7 @@ choose.addEventListener("change", (elem) => {
     image.classList.add("image");
     document.querySelector("#main").appendChild(image);
     document.querySelector(".choose").style.display = "none";
+    document.querySelector(".custom-btn").style.display = "none";
   }
 });
 
@@ -246,12 +247,21 @@ download.addEventListener("click", () => {
 });
 
 original.addEventListener("click", () => {
-  resetFilters();
-  resetValues();
-  applyFilters();
+  if (!image) {
+    alert("Please select an image to view original.");
+    return;
+  } else {
+    resetFilters();
+    resetValues();
+    applyFilters();
+  }
 });
 
 vintage.addEventListener("click", () => {
+  if (!image) {
+    alert("Please select an image to apply vintage filter.");
+    return;
+  } else {
   brightnessValue = 110;
   contrastValue = 120;
   saturationValue = 90;
@@ -259,40 +269,61 @@ vintage.addEventListener("click", () => {
   sepiaValue = 30;
   applyFilters();
   resetValues();
+  }
 });
 
 cold.addEventListener("click", () => {
+  if (!image) {
+    alert("Please select an image to apply cold filter.");
+    return;
+  } else {
   brightnessValue = 90;
   contrastValue = 110;
   saturationValue = 120;
   hueValue = 20;
   applyFilters();
   resetValues();
+  }
 });
 
 warm.addEventListener("click", () => {
+  if (!image) {
+    alert("Please select an image to apply warm filter.");
+    return;
+  } else {
   brightnessValue = 110;
   contrastValue = 120;
   saturationValue = 120;
   hueValue = -20;
   applyFilters();
   resetValues();
+  }
 });
 
 dramatic.addEventListener("click", () => {
-  brightnessValue = 80;
-  contrastValue = 150;
-  saturationValue = 80;
-  hueValue = 0;
-  applyFilters();
-  resetValues();
+  if (!image) {
+    alert("Please select an image to apply dramatic filter.");
+    return;
+  } else {
+    brightnessValue = 80;
+    contrastValue = 150;
+    saturationValue = 80;
+    hueValue = 0;
+    applyFilters();
+    resetValues();
+  }
 });
 
 darken.addEventListener("click", () => {
+  if (!image) {
+    alert("Please select an image to apply darken filter.");
+    return;
+  } else {
   brightnessValue = 70;
   contrastValue = 130;
   saturationValue = 100;
   hueValue = 0;
   applyFilters();
   resetValues();
+  }
 });
